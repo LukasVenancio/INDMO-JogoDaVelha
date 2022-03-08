@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroud"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/jogo"
+        android:layout_width="241dp"
+        android:layout_height="145dp"
+        android:text="Jogo da velha"
+        android:fontFamily="@font/pressstart"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:shadowColor="@color/lilas"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="10"
+        android:textSize="48sp"
+        android:layout_marginBottom="107dp"/>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="227dp"
+        android:layout_height="99dp"
+        android:background="@drawable/botao"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:text="START"
+        android:fontFamily="@font/pressstart"
+        android:textColor="@color/lilas"
+        android:textSize="24sp" />
+        
+
+
+</LinearLayout>
