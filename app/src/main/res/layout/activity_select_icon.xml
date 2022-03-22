@@ -48,12 +48,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_vertical"
-            android:layout_marginTop="260dp">
+            android:layout_marginTop="94dp"
+            android:layout_marginBottom="70dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Game mode:"
+                android:text="Player 1 icon:"
                 android:fontFamily="@font/pressstart"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -67,32 +68,78 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <Button
-                    android:id="@+id/player"
+                <ImageButton
+                    android:id="@+id/playerOneX"
                     android:layout_width="170dp"
                     android:layout_height="90dp"
                     android:background="@drawable/botao"
-                    android:text="PLAYER \nVS \nPLAYER"
-                    android:fontFamily="@font/pressstart"
-                    android:textColor="@color/lilas"
-                    android:textSize="14sp"
-                    android:layout_gravity="center"/>
-                <Button
-                    android:id="@+id/machine"
+                    android:src="@drawable/x"
+                    android:orientation="vertical"
+                    android:gravity="center"/>
+                <ImageButton
+                    android:id="@+id/playerOneO"
                     android:layout_width="170dp"
                     android:layout_height="90dp"
                     android:background="@drawable/botao"
-                    android:text="PLAYER \nVS \nMACHINE"
-                    android:fontFamily="@font/pressstart"
-                    android:textColor="@color/lilas"
-                    android:textSize="14sp"
-                    android:layout_gravity="center"/>
-
+                    android:src="@drawable/o"
+                    android:orientation="vertical"
+                    android:gravity="center"/>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginTop="100dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Player 2 icon:"
+                    android:fontFamily="@font/pressstart"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:shadowColor="@color/lilas"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="10"
+                    android:textSize="18sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/playerTwoX"
+                        android:layout_width="170dp"
+                        android:layout_height="90dp"
+                        android:background="@drawable/botao"
+                        android:src="@drawable/x"
+                        android:orientation="vertical"
+                        android:gravity="center"/>
+                    <ImageButton
+                        android:id="@+id/playerTwoO"
+                        android:layout_width="170dp"
+                        android:layout_height="90dp"
+                        android:background="@drawable/botao"
+                        android:src="@drawable/o"
+                        android:orientation="vertical"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
-
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Start game!"
+            android:gravity="center"
+            android:fontFamily="@font/pressstart"
+            android:background="@drawable/botao"
+            android:textAlignment="center"
+            android:textColor="@color/lilas"
+            android:textSize="14sp" />
     </LinearLayout>
-
 </LinearLayout>

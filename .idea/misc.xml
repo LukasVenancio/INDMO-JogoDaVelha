@@ -7,8 +7,12 @@
         <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/drawable/botao_sem_preenchimento.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/drawable/rounded.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/drawable/stroke_text_view.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/layout/activity_game.xml" value="0.3446557971014493" />
         <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/layout/activity_game_mode.xml" value="0.33" />
         <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/layout/activity_selec_icon.xml" value="0.3446557971014493" />
+        <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/layout/activity_select_icon.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/21276375/AndroidStudioProjects/JogoDaVelha/app/src/main/res/layout/activity_teste_acitivity.xml" value="0.20520833333333333" />
       </map>
     </option>
   </component>
