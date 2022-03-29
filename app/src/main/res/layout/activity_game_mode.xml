@@ -23,7 +23,7 @@
                 android:id="@+id/returnArrow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/arrow_two"
+                android:background="@drawable/left_arrow"
                 android:layout_marginTop="15dp"/>
 
             <TextView
@@ -39,7 +39,7 @@
                 android:shadowRadius="10"
                 android:textSize="24sp"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="50dp"/>
+                android:layout_marginLeft="30dp"/>
 
         </LinearLayout>
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_vertical"
-            android:layout_marginTop="260dp">
+            android:layout_marginTop="240dp">
 
             <TextView
                 android:layout_width="wrap_content"

@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/frame_game_background"
-    tools:context=".GameActivity"
+    android:background="@drawable/frame_game_background_one"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    tools:context=".GameActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <ImageButton
-            android:background="@drawable/left_arrow"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="271dp"
-            android:layout_marginLeft="20dp"/>
+            android:background="@drawable/left_arrow" />
 
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/return_arrow"/>
+            android:background="@drawable/return_arrow" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -41,23 +41,153 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player 1"
                 android:fontFamily="@font/pressstart"
-                android:textAlignment="center"
-                android:textColor="@color/white"
                 android:shadowColor="@color/lilas"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="10"
-                android:textSize="18sp"/>
+                android:text="Player 1"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/x"/>
+                android:id="@+id/optionPlacarPlayerOne"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                 />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pressstart"
+                android:shadowColor="@color/lilas"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="10"
+                android:text="Player 2"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:id="@+id/optionPlacarPlayerTwo"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botao_sem_preenchimento"/>
+
+            <ImageButton
+                android:id="@+id/btn2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+
+            <ImageButton
+                android:id="@+id/btn3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="47dp">
+
+            <ImageButton
+                android:id="@+id/btn4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botao_sem_preenchimento"/>
+
+            <ImageButton
+                android:id="@+id/btn5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+
+            <ImageButton
+                android:id="@+id/btn6"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp">
+
+            <ImageButton
+                android:id="@+id/btn7"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+
+            <ImageButton
+                android:id="@+id/btn8"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+
+            <ImageButton
+                android:id="@+id/btn9"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/botao_sem_preenchimento" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/debug"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pressstart"
+        android:shadowColor="@color/lilas"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="10"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
 
 </LinearLayout>
