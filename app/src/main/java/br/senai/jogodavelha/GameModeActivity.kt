@@ -25,7 +25,8 @@ class GameModeActivity : AppCompatActivity() {
         }
 
         binding.machine.setOnClickListener(){
-
+            val intent = Intent(this, SettingsMachineActivity::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -9,6 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
+            android:name=".GameMachineActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar"/>
+        <activity
+            android:name=".SettingsMachineActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
             android:name=".GameActivity"
             android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />

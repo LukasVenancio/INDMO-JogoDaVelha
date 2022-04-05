@@ -46,13 +46,13 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="10"
-                android:text="Player 1"
+                android:text="Player"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <ImageButton
-                android:id="@+id/optionPlacarPlayerOne"
+                android:id="@+id/optionPlacarPlayer"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/botao_null"/>
@@ -74,13 +74,13 @@
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="10"
-                android:text="Player 2"
+                android:text="Machine"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <ImageButton
-                android:id="@+id/optionPlacarPlayerTwo"
+                android:id="@+id/optionPlacarMachine"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/botao_null"/>

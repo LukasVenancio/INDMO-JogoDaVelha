@@ -14,6 +14,8 @@ class GameActivity : AppCompatActivity() {
     var jogadasPlayerOne = IntArray(10)
     var jogadasPlayerTwo = IntArray(10)
 
+    lateinit var escolhaPlayerOne : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
@@ -24,13 +26,15 @@ class GameActivity : AppCompatActivity() {
         val optionPlayerOne = intent.getStringExtra("optionPlayerOne").toString()
         val optionPlayerTwo = intent.getStringExtra("optionPlayerTwo").toString()
 
+        escolhaPlayerOne = optionPlayerOne
+
         if (optionPlayerOne == "x"){
-            binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.x)
-            binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.o)
+            binding.optionPlacarPlayerOne.setImageResource(R.drawable.x_placar)
+            binding.optionPlacarPlayerTwo.setImageResource(R.drawable.o_placar)
 
         }else{
-            binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.o)
-            binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.x)
+            binding.optionPlacarPlayerOne.setImageResource(R.drawable.o_placar)
+            binding.optionPlacarPlayerTwo.setImageResource(R.drawable.x_placar)
         }
 
         binding.btn1.setOnClickListener {
@@ -95,11 +99,11 @@ class GameActivity : AppCompatActivity() {
 
             //binding.debug.text = vezDeJogada.toString()
             if (optionPlayerOne == "x"){
-                button.background = getDrawable(R.drawable.x)
+                button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 vezDeJogada = 2
             }else{
-                button.background = getDrawable(R.drawable.o)
+                button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 vezDeJogada = 2
             }
@@ -108,12 +112,12 @@ class GameActivity : AppCompatActivity() {
 
             //binding.debug.text = vezDeJogada.toString()
             if (optionPlayerOne == "x"){
-                button.background = getDrawable(R.drawable.o)
+                button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 vezDeJogada = 1
 
             }else{
-                button.background = getDrawable(R.drawable.x)
+                button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 vezDeJogada = 1
             }
@@ -133,25 +137,26 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun definirPlacar (optionPlayerOne: String){
+
         if (vezDeJogada == 2){
 
             if(optionPlayerOne == "x"){
                 binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.botao)
-                binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.x)
+                binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.botao_null)
 
             }else{
                 binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.botao)
-                binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.o)
+                binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.botao_null)
             }
 
         }else{
             if (optionPlayerOne == "o"){
                 binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.botao)
-                binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.x)
+                binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.botao_null)
 
             }else{
                 binding.optionPlacarPlayerOne.background = getDrawable(R.drawable.botao)
-                binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.o)
+                binding.optionPlacarPlayerTwo.background = getDrawable(R.drawable.botao_null)
             }
         }
     }
@@ -168,117 +173,91 @@ class GameActivity : AppCompatActivity() {
         binding.btn9.isEnabled = false
     }
 
+    private fun marcarButtons(btn1 : ImageButton, btn2 : ImageButton, btn3 : ImageButton){
+        btn1.background = getDrawable(R.drawable.botao)
+        btn2.background = getDrawable(R.drawable.botao)
+        btn3.background = getDrawable(R.drawable.botao)
+    }
+
     private fun determinarVencedor(){
 
             if (jogadasPlayerOne[3].equals(3) && jogadasPlayerOne[2].equals(2) && jogadasPlayerOne[1].equals(1)){
-                binding.btn3.background = getDrawable(R.drawable.botao)
-                binding.btn2.background = getDrawable(R.drawable.botao)
-                binding.btn1.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn1, binding.btn2, binding.btn3)
                 binding.debug.text = "Player 1 wins!!"
                 desabilitarButtons()
 
             }else if (jogadasPlayerOne[1].equals(1) && jogadasPlayerOne[4].equals(4) && jogadasPlayerOne[7].equals(7)){
-                binding.btn4.background = getDrawable(R.drawable.botao)
-                binding.btn7.background = getDrawable(R.drawable.botao)
-                binding.btn1.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn1, binding.btn4, binding.btn7)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerOne[2].equals(2) && jogadasPlayerOne[5].equals(5) && jogadasPlayerOne[8].equals(8)){
-                binding.btn5.background = getDrawable(R.drawable.botao)
-                binding.btn2.background = getDrawable(R.drawable.botao)
-                binding.btn8.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn2, binding.btn5, binding.btn8)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerOne[3].equals(3) && jogadasPlayerOne[6].equals(6) && jogadasPlayerOne[9].equals(9)){
-                binding.btn3.background = getDrawable(R.drawable.botao)
-                binding.btn6.background = getDrawable(R.drawable.botao)
-                binding.btn9.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn3, binding.btn6, binding.btn9)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerOne[4].equals(4) && jogadasPlayerOne[5].equals(5) && jogadasPlayerOne[6].equals(6)){
-                binding.btn4.background = getDrawable(R.drawable.botao)
-                binding.btn5.background = getDrawable(R.drawable.botao)
-                binding.btn6.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn4, binding.btn5, binding.btn6)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerOne[7].equals(7) && jogadasPlayerOne[8].equals(8) && jogadasPlayerOne[9].equals(9)){
-                binding.btn7.background = getDrawable(R.drawable.botao)
-                binding.btn8.background = getDrawable(R.drawable.botao)
-                binding.btn9.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn7, binding.btn8, binding.btn9)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerOne[5].equals(5) && jogadasPlayerOne[9].equals(9) && jogadasPlayerOne[1].equals(1)){
-                binding.btn5.background = getDrawable(R.drawable.botao)
-                binding.btn9.background = getDrawable(R.drawable.botao)
-                binding.btn1.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn1, binding.btn5, binding.btn9)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerOne[3].equals(3) && jogadasPlayerOne[7].equals(7) && jogadasPlayerOne[5].equals(5)){
-                binding.btn3.background = getDrawable(R.drawable.botao)
-                binding.btn7.background = getDrawable(R.drawable.botao)
-                binding.btn5.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn7, binding.btn5, binding.btn3)
                 desabilitarButtons()
                 binding.debug.text = "Player 1 wins!!"
 
             }else if (jogadasPlayerTwo[3].equals(3) && jogadasPlayerTwo[2].equals(2) && jogadasPlayerTwo[1].equals(1)){
-                binding.btn3.background = getDrawable(R.drawable.botao)
-                binding.btn2.background = getDrawable(R.drawable.botao)
-                binding.btn1.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn1, binding.btn2, binding.btn3)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[1].equals(1) && jogadasPlayerTwo[4].equals(4) && jogadasPlayerTwo[7].equals(7)){
-                binding.btn4.background = getDrawable(R.drawable.botao)
-                binding.btn7.background = getDrawable(R.drawable.botao)
-                binding.btn1.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn1, binding.btn4, binding.btn7)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[2].equals(2) && jogadasPlayerTwo[5].equals(5) && jogadasPlayerTwo[8].equals(8)){
-                binding.btn5.background = getDrawable(R.drawable.botao)
-                binding.btn2.background = getDrawable(R.drawable.botao)
-                binding.btn8.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn5, binding.btn2, binding.btn8)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[3].equals(3) && jogadasPlayerTwo[6].equals(6) && jogadasPlayerTwo[9].equals(9)){
-                binding.btn3.background = getDrawable(R.drawable.botao)
-                binding.btn6.background = getDrawable(R.drawable.botao)
-                binding.btn9.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn6, binding.btn9, binding.btn3)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[4].equals(4) && jogadasPlayerTwo[5].equals(5) && jogadasPlayerTwo[6].equals(6)){
-                binding.btn4.background = getDrawable(R.drawable.botao)
-                binding.btn5.background = getDrawable(R.drawable.botao)
-                binding.btn6.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn5, binding.btn4, binding.btn6)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[7].equals(7) && jogadasPlayerTwo[8].equals(8) && jogadasPlayerTwo[9].equals(9)){
-                binding.btn7.background = getDrawable(R.drawable.botao)
-                binding.btn8.background = getDrawable(R.drawable.botao)
-                binding.btn9.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn7, binding.btn8, binding.btn9)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[5].equals(5) && jogadasPlayerTwo[9].equals(9) && jogadasPlayerTwo[1].equals(1)){
-                binding.btn5.background = getDrawable(R.drawable.botao)
-                binding.btn9.background = getDrawable(R.drawable.botao)
-                binding.btn1.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn5, binding.btn9, binding.btn3)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
 
             }else if (jogadasPlayerTwo[3].equals(3) && jogadasPlayerTwo[7].equals(7) && jogadasPlayerTwo[5].equals(5)){
-                binding.btn3.background = getDrawable(R.drawable.botao)
-                binding.btn7.background = getDrawable(R.drawable.botao)
-                binding.btn5.background = getDrawable(R.drawable.botao)
+                marcarButtons(binding.btn5, binding.btn7, binding.btn3)
                 desabilitarButtons()
                 binding.debug.text = "Player 2 wins!!"
             }
