@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import br.senai.jogodavelha.databinding.ActivityGameMachineBinding
+import kotlin.random.Random
 
 class GameMachineActivity : AppCompatActivity() {
 
@@ -12,6 +13,7 @@ class GameMachineActivity : AppCompatActivity() {
     var vezDeJogada = 1
     var jogadasPlayer = IntArray(10)
     var jogadasMachine = IntArray(10)
+    var machineOption = ""
 
     lateinit var escolhaPlayerOne : String
 
@@ -24,8 +26,6 @@ class GameMachineActivity : AppCompatActivity() {
 
         val playerOption = intent.getStringExtra("iconOption").toString()
         val difficultyOption = intent.getStringExtra("difficultyOption").toString()
-
-        var machineOption = ""
 
         if (playerOption == "x"){
             machineOption = "o"
@@ -100,35 +100,97 @@ class GameMachineActivity : AppCompatActivity() {
         }
     }
 
+    private fun easyGame(){
+
+        var machineChoice = randomNumber()
+
+        if (vezDeJogada == 2) {
+
+            while (encontrarButtonJogado(machineChoice)){
+                machineChoice = randomNumber()
+            }
+            contarJogada(machineChoice)
+            playMachine(machineChoice)
+        }
+
+    }
+
+    private fun playMachine(choice: Int){
+        val button = findButton(choice)
+
+        if (machineOption == "x"){
+            button.setImageResource(R.drawable.x)
+            button.isEnabled = false
+            vezDeJogada = 1
+        }else{
+            button.setImageResource(R.drawable.o)
+            button.isEnabled = false
+            vezDeJogada = 1
+        }
+    }
+
+    private fun findButton(choice: Int):ImageButton{
+        var button = binding.btn1
+
+        if (choice == 1){
+            button = binding.btn1
+        }else if(choice == 2){
+            button = binding.btn2
+        }else if(choice == 3){
+            button = binding.btn3
+        }else if(choice == 4){
+            button = binding.btn4
+        }else if(choice == 5){
+            button = binding.btn5
+        }else if(choice == 6){
+            button = binding.btn6
+        }else if(choice == 7){
+            button = binding.btn7
+        }else if(choice == 8){
+            button = binding.btn8
+        }else if(choice == 9){
+            button = binding.btn9
+        }
+
+        return button
+    }
+
+    private fun encontrarButtonJogado(choice : Int): Boolean{
+        var index = 0
+
+        var response = false
+
+        while (index < 10){
+            if (jogadasPlayer[index] == choice || jogadasMachine[index] == choice){
+                response = true
+            }
+            index++
+        }
+        return response
+    }
+
+
+    private fun randomNumber():Int{
+        val random = Random.nextInt(1, 9)
+
+        return random
+    }
     private fun Jogar(button : ImageButton, optionPlayerOne : String){
 
         if(vezDeJogada == 1){
-
-            //binding.debug.text = vezDeJogada.toString()
             if (optionPlayerOne == "x"){
                 button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 vezDeJogada = 2
+                easyGame()
             }else{
                 button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 vezDeJogada = 2
-            }
-
-        }else if(vezDeJogada == 2){
-
-            //binding.debug.text = vezDeJogada.toString()
-            if (optionPlayerOne == "x"){
-                button.setImageResource(R.drawable.o)
-                button.isEnabled = false
-                vezDeJogada = 1
-
-            }else{
-                button.setImageResource(R.drawable.x)
-                button.isEnabled = false
-                vezDeJogada = 1
+                easyGame()
             }
         }
+
     }
 
     private fun contarJogada(idButton : Int){
@@ -190,83 +252,99 @@ class GameMachineActivity : AppCompatActivity() {
 
         if (jogadasPlayer[3].equals(3) && jogadasPlayer[2].equals(2) && jogadasPlayer[1].equals(1)){
             marcarButtons(binding.btn1, binding.btn2, binding.btn3)
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
             desabilitarButtons()
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[1].equals(1) && jogadasPlayer[4].equals(4) && jogadasPlayer[7].equals(7)){
             marcarButtons(binding.btn1, binding.btn4, binding.btn7)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[2].equals(2) && jogadasPlayer[5].equals(5) && jogadasPlayer[8].equals(8)){
             marcarButtons(binding.btn2, binding.btn5, binding.btn8)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[3].equals(3) && jogadasPlayer[6].equals(6) && jogadasPlayer[9].equals(9)){
             marcarButtons(binding.btn3, binding.btn6, binding.btn9)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[4].equals(4) && jogadasPlayer[5].equals(5) && jogadasPlayer[6].equals(6)){
             marcarButtons(binding.btn4, binding.btn5, binding.btn6)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[7].equals(7) && jogadasPlayer[8].equals(8) && jogadasPlayer[9].equals(9)){
             marcarButtons(binding.btn7, binding.btn8, binding.btn9)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[5].equals(5) && jogadasPlayer[9].equals(9) && jogadasPlayer[1].equals(1)){
             marcarButtons(binding.btn1, binding.btn5, binding.btn9)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasPlayer[3].equals(3) && jogadasPlayer[7].equals(7) && jogadasPlayer[5].equals(5)){
             marcarButtons(binding.btn7, binding.btn5, binding.btn3)
             desabilitarButtons()
-            binding.debug.text = "Player 1 wins!!"
+            binding.debug.text = "Player wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[3].equals(3) && jogadasMachine[2].equals(2) && jogadasMachine[1].equals(1)){
             marcarButtons(binding.btn1, binding.btn2, binding.btn3)
             desabilitarButtons()
             binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[1].equals(1) && jogadasMachine[4].equals(4) && jogadasMachine[7].equals(7)){
             marcarButtons(binding.btn1, binding.btn4, binding.btn7)
             desabilitarButtons()
             binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[2].equals(2) && jogadasMachine[5].equals(5) && jogadasMachine[8].equals(8)){
             marcarButtons(binding.btn5, binding.btn2, binding.btn8)
             desabilitarButtons()
             binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[3].equals(3) && jogadasMachine[6].equals(6) && jogadasMachine[9].equals(9)){
             marcarButtons(binding.btn6, binding.btn9, binding.btn3)
             desabilitarButtons()
             binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[4].equals(4) && jogadasMachine[5].equals(5) && jogadasMachine[6].equals(6)){
             marcarButtons(binding.btn5, binding.btn4, binding.btn6)
             desabilitarButtons()
             binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[7].equals(7) && jogadasMachine[8].equals(8) && jogadasMachine[9].equals(9)){
             marcarButtons(binding.btn7, binding.btn8, binding.btn9)
             desabilitarButtons()
             binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[5].equals(5) && jogadasMachine[9].equals(9) && jogadasMachine[1].equals(1)){
             marcarButtons(binding.btn5, binding.btn9, binding.btn3)
             desabilitarButtons()
-            binding.debug.text = "Player 2 wins!!"
+            binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
 
         }else if (jogadasMachine[3].equals(3) && jogadasMachine[7].equals(7) && jogadasMachine[5].equals(5)){
             marcarButtons(binding.btn5, binding.btn7, binding.btn3)
             desabilitarButtons()
-            binding.debug.text = "Player 2 wins!!"
+            binding.debug.text = "Machine wins!!"
+            vezDeJogada = 0
         }
     }
 }

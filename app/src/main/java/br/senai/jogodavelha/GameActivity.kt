@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import br.senai.jogodavelha.databinding.ActivityGameBinding
 import java.lang.reflect.Array
+import kotlin.random.Random
 
 class GameActivity : AppCompatActivity() {
 
