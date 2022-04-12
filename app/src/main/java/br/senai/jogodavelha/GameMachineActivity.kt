@@ -11,8 +11,8 @@ class GameMachineActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityGameMachineBinding
     var vezDeJogada = 1
-    var jogadasPlayer = IntArray(10)
-    var jogadasMachine = IntArray(10)
+    var jogadasPlayer = IntArray(12)
+    var jogadasMachine = IntArray(12)
     var machineOption = ""
     var difficultyOption = ""
 
@@ -119,89 +119,135 @@ class GameMachineActivity : AppCompatActivity() {
 
         if (jogadasPlayer[1] == 1 && jogadasPlayer[2] == 2 ||
             jogadasPlayer[7] == 7 && jogadasPlayer[5] == 5 ||
-            jogadasPlayer[9] == 9 && jogadasPlayer[6] == 6 &&
-            jogadasPlayer[3] == null){
-            choice = 3
+            jogadasPlayer[9] == 9 && jogadasPlayer[6] == 6){
+
+                if (jogadasPlayer[3] == 0 && jogadasMachine[3] == 0){
+                    choice = 3
+
+                }else{
+                    easyGame()
+                }
 
         }else if (jogadasPlayer[2] == 2 && jogadasPlayer[3] == 3 ||
             jogadasPlayer[7] == 7 && jogadasPlayer[4] == 4 ||
-            jogadasPlayer[9] == 9 && jogadasPlayer[5] == 5 &&
-            jogadasPlayer[1] == null){
-            choice = 1
+            jogadasPlayer[9] == 9 && jogadasPlayer[5] == 5){
+
+            if (jogadasPlayer[1] == 0 && jogadasMachine[1] == 0){
+                choice = 1
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[1] == 1 && jogadasPlayer[3] == 3 ||
-            jogadasPlayer[8] == 8 && jogadasPlayer[5] == 5 &&
-            jogadasPlayer[2] == null){
-            choice = 2
+            jogadasPlayer[8] == 8 && jogadasPlayer[5] == 5){
+
+            if (jogadasPlayer[2] == 0 && jogadasMachine[2] == 0){
+                choice = 2
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[7] == 7 && jogadasPlayer[1] == 1 ||
-            jogadasPlayer[6] == 6 && jogadasPlayer[5] == 5 &&
-            jogadasPlayer[4] == null){
-            choice = 4
+            jogadasPlayer[6] == 6 && jogadasPlayer[5] == 5){
+
+            if (jogadasPlayer[4] == 0 && jogadasMachine[4] == 0){
+                choice = 4
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[2] == 2 && jogadasPlayer[8] == 8 ||
             jogadasPlayer[6] == 6 && jogadasPlayer[4] == 4 ||
             jogadasPlayer[7] == 7 && jogadasPlayer[3] == 3 ||
-            jogadasPlayer[9] == 9 && jogadasPlayer[1] == 1 &&
-            jogadasPlayer[5] == null){
-            choice = 5
+            jogadasPlayer[9] == 9 && jogadasPlayer[1] == 1){
+
+            if (jogadasPlayer[5] == 0 && jogadasMachine[5] == 0){
+                choice = 5
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[3] == 3 && jogadasPlayer[9] == 9 ||
-            jogadasPlayer[4] == 4 && jogadasPlayer[5] == 5 &&
-            jogadasPlayer[6] == null){
-            choice = 6
+            jogadasPlayer[4] == 4 && jogadasPlayer[5] == 5){
+
+            if (jogadasPlayer[6] == 0 && jogadasMachine[6] == 0){
+                choice = 6
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[4] == 4 && jogadasPlayer[1] == 1 ||
             jogadasPlayer[3] == 3 && jogadasPlayer[5] == 5 ||
-            jogadasPlayer[8] == 8 && jogadasPlayer[9] == 9 &&
-            jogadasPlayer[7] == null){
-            choice = 7
+            jogadasPlayer[8] == 8 && jogadasPlayer[9] == 9){
+
+            if (jogadasPlayer[7] == 0 && jogadasMachine[7] == 0){
+                choice = 7
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[7] == 7 && jogadasPlayer[9] == 9 ||
-            jogadasPlayer[2] == 2 && jogadasPlayer[5] == 5 &&
-            jogadasPlayer[8] == null){
-            choice = 8
+            jogadasPlayer[2] == 2 && jogadasPlayer[5] == 5){
+
+            if (jogadasPlayer[8] == 0 && jogadasMachine[8] == 0){
+                choice = 8
+
+            }else{
+                easyGame()
+            }
 
         }else if (jogadasPlayer[3] == 3 && jogadasPlayer[6] == 6 ||
             jogadasPlayer[1] == 1 && jogadasPlayer[5] == 5 ||
-            jogadasPlayer[8] == 8 && jogadasPlayer[7] == 7 &&
-            jogadasPlayer[9] == null){
-            choice = 9
-        }else{
-            choice = randomNumber()
+            jogadasPlayer[8] == 8 && jogadasPlayer[7] == 7){
 
-            while (encontrarButtonJogado(choice)){
-                choice = randomNumber()
+            if (jogadasPlayer[9] == 0 && jogadasMachine[9] == 0){
+                choice = 9
+
+            }else{
+                easyGame()
             }
+        }else{
+
+            easyGame()
+
         }
 
         playMachine(choice)
+        vezDeJogada = 1
     }
     private fun easyGame(){
 
         var machineChoice = randomNumber()
 
-        if (vezDeJogada == 2) {
-
-            while (encontrarButtonJogado(machineChoice)){
-                machineChoice = randomNumber()
-            }
-            contarJogada(machineChoice)
-            playMachine(machineChoice)
+        while (encontrarButtonJogado(machineChoice)){
+            machineChoice = randomNumber()
         }
+        playMachine(machineChoice)
+        vezDeJogada = 1
+
     }
 
     private fun playMachine(choice: Int){
         val button = findButton(choice)
 
-        if (machineOption == "x"){
-            button.setImageResource(R.drawable.x)
-            button.isEnabled = false
-            vezDeJogada = 1
-        }else{
-            button.setImageResource(R.drawable.o)
-            button.isEnabled = false
-            vezDeJogada = 1
+        if (vezDeJogada == 2){
+
+            if (machineOption == "x"){
+                button.setImageResource(R.drawable.x)
+                button.isEnabled = false
+                contarJogada(choice)
+
+            }else{
+                button.setImageResource(R.drawable.o)
+                button.isEnabled = false
+                contarJogada(choice)
+            }
         }
     }
 
@@ -227,22 +273,22 @@ class GameMachineActivity : AppCompatActivity() {
         }else if(choice == 9){
             button = binding.btn9
         }
-
         return button
     }
 
     private fun encontrarButtonJogado(choice : Int): Boolean{
-        var index = 0
+//        var index = 1
+//
+//        var response = false
+//
+//        while (index < 7 ){
+//            if (jogadasPlayer[index] == choice || jogadasMachine[index] == choice){
+//                return true
+//            }
+//            index++
+//        }
 
-        var response = false
-
-        while (index < 8){
-            if (jogadasPlayer[index] == choice || jogadasMachine[index] == choice){
-                response = true
-            }
-            index++
-        }
-        return response
+        return jogadasPlayer[choice] == choice || jogadasMachine[choice] == choice
     }
 
     private fun randomNumber():Int{
@@ -258,15 +304,16 @@ class GameMachineActivity : AppCompatActivity() {
                 button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 vezDeJogada = 2
+                determinarVencedor()
                 setDifficulty()
             }else{
                 button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 vezDeJogada = 2
+                determinarVencedor()
                 setDifficulty()
             }
         }
-
     }
 
     private fun contarJogada(idButton : Int){
@@ -275,9 +322,7 @@ class GameMachineActivity : AppCompatActivity() {
             jogadasPlayer[idButton] = idButton
 
         }else if(vezDeJogada == 2){
-
             jogadasMachine[idButton] = idButton
-
         }
     }
 
