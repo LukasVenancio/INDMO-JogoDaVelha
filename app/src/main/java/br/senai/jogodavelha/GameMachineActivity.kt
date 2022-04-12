@@ -14,6 +14,7 @@ class GameMachineActivity : AppCompatActivity() {
     var jogadasPlayer = IntArray(10)
     var jogadasMachine = IntArray(10)
     var machineOption = ""
+    var difficultyOption = ""
 
     lateinit var escolhaPlayerOne : String
 
@@ -25,7 +26,7 @@ class GameMachineActivity : AppCompatActivity() {
         val intent : Intent = getIntent()
 
         val playerOption = intent.getStringExtra("iconOption").toString()
-        val difficultyOption = intent.getStringExtra("difficultyOption").toString()
+        difficultyOption = intent.getStringExtra("difficultyOption").toString()
 
         if (playerOption == "x"){
             machineOption = "o"
@@ -100,6 +101,82 @@ class GameMachineActivity : AppCompatActivity() {
         }
     }
 
+    private fun setDifficulty (){
+
+        if(difficultyOption == "easy"){
+            easyGame()
+        }else if (difficultyOption == "medium"){
+            mediumGame()
+        }else if (difficultyOption == "hard"){
+            //hardGame()
+        }else{
+            easyGame()
+        }
+    }
+
+    private fun mediumGame(){
+        var choice = 0
+
+        if (jogadasPlayer[1] == 1 && jogadasPlayer[2] == 2 ||
+            jogadasPlayer[7] == 7 && jogadasPlayer[5] == 5 ||
+            jogadasPlayer[9] == 9 && jogadasPlayer[6] == 6 &&
+            jogadasPlayer[3] == null){
+            choice = 3
+
+        }else if (jogadasPlayer[2] == 2 && jogadasPlayer[3] == 3 ||
+            jogadasPlayer[7] == 7 && jogadasPlayer[4] == 4 ||
+            jogadasPlayer[9] == 9 && jogadasPlayer[5] == 5 &&
+            jogadasPlayer[1] == null){
+            choice = 1
+
+        }else if (jogadasPlayer[1] == 1 && jogadasPlayer[3] == 3 ||
+            jogadasPlayer[8] == 8 && jogadasPlayer[5] == 5 &&
+            jogadasPlayer[2] == null){
+            choice = 2
+
+        }else if (jogadasPlayer[7] == 7 && jogadasPlayer[1] == 1 ||
+            jogadasPlayer[6] == 6 && jogadasPlayer[5] == 5 &&
+            jogadasPlayer[4] == null){
+            choice = 4
+
+        }else if (jogadasPlayer[2] == 2 && jogadasPlayer[8] == 8 ||
+            jogadasPlayer[6] == 6 && jogadasPlayer[4] == 4 ||
+            jogadasPlayer[7] == 7 && jogadasPlayer[3] == 3 ||
+            jogadasPlayer[9] == 9 && jogadasPlayer[1] == 1 &&
+            jogadasPlayer[5] == null){
+            choice = 5
+
+        }else if (jogadasPlayer[3] == 3 && jogadasPlayer[9] == 9 ||
+            jogadasPlayer[4] == 4 && jogadasPlayer[5] == 5 &&
+            jogadasPlayer[6] == null){
+            choice = 6
+
+        }else if (jogadasPlayer[4] == 4 && jogadasPlayer[1] == 1 ||
+            jogadasPlayer[3] == 3 && jogadasPlayer[5] == 5 ||
+            jogadasPlayer[8] == 8 && jogadasPlayer[9] == 9 &&
+            jogadasPlayer[7] == null){
+            choice = 7
+
+        }else if (jogadasPlayer[7] == 7 && jogadasPlayer[9] == 9 ||
+            jogadasPlayer[2] == 2 && jogadasPlayer[5] == 5 &&
+            jogadasPlayer[8] == null){
+            choice = 8
+
+        }else if (jogadasPlayer[3] == 3 && jogadasPlayer[6] == 6 ||
+            jogadasPlayer[1] == 1 && jogadasPlayer[5] == 5 ||
+            jogadasPlayer[8] == 8 && jogadasPlayer[7] == 7 &&
+            jogadasPlayer[9] == null){
+            choice = 9
+        }else{
+            choice = randomNumber()
+
+            while (encontrarButtonJogado(choice)){
+                choice = randomNumber()
+            }
+        }
+
+        playMachine(choice)
+    }
     private fun easyGame(){
 
         var machineChoice = randomNumber()
@@ -112,7 +189,6 @@ class GameMachineActivity : AppCompatActivity() {
             contarJogada(machineChoice)
             playMachine(machineChoice)
         }
-
     }
 
     private fun playMachine(choice: Int){
@@ -160,7 +236,7 @@ class GameMachineActivity : AppCompatActivity() {
 
         var response = false
 
-        while (index < 10){
+        while (index < 8){
             if (jogadasPlayer[index] == choice || jogadasMachine[index] == choice){
                 response = true
             }
@@ -169,12 +245,12 @@ class GameMachineActivity : AppCompatActivity() {
         return response
     }
 
-
     private fun randomNumber():Int{
         val random = Random.nextInt(1, 9)
 
         return random
     }
+
     private fun Jogar(button : ImageButton, optionPlayerOne : String){
 
         if(vezDeJogada == 1){
@@ -182,12 +258,12 @@ class GameMachineActivity : AppCompatActivity() {
                 button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 vezDeJogada = 2
-                easyGame()
+                setDifficulty()
             }else{
                 button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 vezDeJogada = 2
-                easyGame()
+                setDifficulty()
             }
         }
 
