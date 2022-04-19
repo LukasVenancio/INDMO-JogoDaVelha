@@ -15,6 +15,7 @@ class GameMachineActivity : AppCompatActivity() {
     var jogadasMachine = IntArray(12)
     var machineOption = ""
     var difficultyOption = ""
+    var quantidadeDeJogadas = 0
 
     lateinit var escolhaPlayerOne : String
 
@@ -34,8 +35,6 @@ class GameMachineActivity : AppCompatActivity() {
             machineOption = "x"
         }
 
-        escolhaPlayerOne = playerOption
-
         if (playerOption == "x"){
             binding.optionPlacarPlayer.setImageResource(R.drawable.x_placar)
             binding.optionPlacarMachine.setImageResource(R.drawable.o_placar)
@@ -43,6 +42,11 @@ class GameMachineActivity : AppCompatActivity() {
         }else{
             binding.optionPlacarPlayer.setImageResource(R.drawable.o_placar)
             binding.optionPlacarMachine.setImageResource(R.drawable.x_placar)
+        }
+
+        if (difficultyOption == "hard"){
+            vezDeJogada = 2
+            playMachine(5)
         }
 
         binding.btn1.setOnClickListener {
@@ -108,9 +112,28 @@ class GameMachineActivity : AppCompatActivity() {
         }else if (difficultyOption == "medium"){
             mediumGame()
         }else if (difficultyOption == "hard"){
-            //hardGame()
+            hardGame()
         }else{
             easyGame()
+        }
+    }
+
+    private fun jogarCanto(): Int{
+        var choice = randomNumber()
+
+        while ((choice % 2) != 1){
+            choice = randomNumber()
+        }
+
+        return choice
+    }
+
+    private fun hardGame(){
+
+        if(jogadasPlayer[2] == 2 || jogadasPlayer[4] == 4 ||
+            jogadasPlayer[6] == 6 || jogadasPlayer[8] == 8){
+
+            playMachine(jogarCanto())
         }
     }
 
@@ -219,17 +242,17 @@ class GameMachineActivity : AppCompatActivity() {
         }
 
         playMachine(choice)
-        vezDeJogada = 1
+//        vezDeJogada = 1
     }
     private fun easyGame(){
 
         var machineChoice = randomNumber()
 
-        while (encontrarButtonJogado(machineChoice)){
+        while (encontrarButtonJogado(machineChoice) && quantidadeDeJogadas <= 8){
             machineChoice = randomNumber()
         }
         playMachine(machineChoice)
-        vezDeJogada = 1
+        //vezDeJogada = 1
 
     }
 
@@ -242,11 +265,15 @@ class GameMachineActivity : AppCompatActivity() {
                 button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 contarJogada(choice)
+                vezDeJogada = 1
+                quantidadeDeJogadas++
 
             }else{
                 button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 contarJogada(choice)
+                vezDeJogada = 1
+                quantidadeDeJogadas++
             }
         }
     }
@@ -277,17 +304,6 @@ class GameMachineActivity : AppCompatActivity() {
     }
 
     private fun encontrarButtonJogado(choice : Int): Boolean{
-//        var index = 1
-//
-//        var response = false
-//
-//        while (index < 7 ){
-//            if (jogadasPlayer[index] == choice || jogadasMachine[index] == choice){
-//                return true
-//            }
-//            index++
-//        }
-
         return jogadasPlayer[choice] == choice || jogadasMachine[choice] == choice
     }
 
@@ -304,12 +320,14 @@ class GameMachineActivity : AppCompatActivity() {
                 button.setImageResource(R.drawable.x)
                 button.isEnabled = false
                 vezDeJogada = 2
+                quantidadeDeJogadas++
                 determinarVencedor()
                 setDifficulty()
             }else{
                 button.setImageResource(R.drawable.o)
                 button.isEnabled = false
                 vezDeJogada = 2
+                quantidadeDeJogadas++
                 determinarVencedor()
                 setDifficulty()
             }
